@@ -5,7 +5,7 @@ import {SharedModule} from '../shared/shared.module';
 import {NavigationService} from './services';
 import {MenuComponent} from "./components/menu/menu.component";
 import {CommonModule} from "@angular/common";
-import {MatToolbarModule} from "@angular/material";
+import {MatToolbarModule, MatButtonModule} from "@angular/material";
 import {AuthModule} from "../auth/auth.module";
 
 const EXPORTED_DECLARATIONS = [
@@ -23,7 +23,7 @@ const EXPORTS = [
 
 @NgModule({
   declarations: INTERNAL_DECLARATIONS,
-  imports: [SharedModule, AuthModule, CommonModule, MatToolbarModule],
+  imports: [SharedModule, AuthModule, CommonModule, MatToolbarModule, MatButtonModule],
   exports: EXPORTS,
   providers: [/* nothing to add here */]
 })
