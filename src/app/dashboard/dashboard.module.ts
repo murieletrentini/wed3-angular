@@ -4,6 +4,9 @@ import {SharedModule} from '../shared/shared.module';
 
 import {DashbaordRoutingModule} from './dashboard-routing.module';
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import {AllTransactionsComponent} from './components/all-transactions/all-transactions.component';
+import {LatestTransactionsComponent} from './components/latest-transactions/latest-transactions.component';
+import {NewPaymentComponent} from './components/new-payment/new-payment.component';
 
 const EXPORTED_DECLARATIONS = [
   // Declarations (Components / Directives) which can be used outside the Module
@@ -12,7 +15,10 @@ const EXPORTED_DECLARATIONS = [
 const INTERNAL_DECLARATIONS = [
   ...EXPORTED_DECLARATIONS,
   // Declarations (Components / Directives) which can be used inside the Module
-  DashboardComponent
+  DashboardComponent,
+  AllTransactionsComponent,
+  LatestTransactionsComponent,
+  NewPaymentComponent
 ];
 const EXPORTS = [
   ...EXPORTED_DECLARATIONS
