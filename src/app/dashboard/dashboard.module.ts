@@ -3,13 +3,16 @@ import {NgModule, ModuleWithProviders} from '@angular/core';
 import {SharedModule} from '../shared/shared.module';
 
 import {DashbaordRoutingModule} from './dashboard-routing.module';
+import {DashboardComponent} from "./components/dashboard/dashboard.component";
 
 const EXPORTED_DECLARATIONS = [
   // Declarations (Components / Directives) which can be used outside the Module
+
 ];
 const INTERNAL_DECLARATIONS = [
-  ...EXPORTED_DECLARATIONS
+  ...EXPORTED_DECLARATIONS,
   // Declarations (Components / Directives) which can be used inside the Module
+  DashboardComponent
 ];
 const EXPORTS = [
   ...EXPORTED_DECLARATIONS

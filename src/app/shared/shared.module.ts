@@ -1,8 +1,10 @@
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {MenuComponent} from "./components/menu/menu.component";
 
 const EXPORTED_DECLARATIONS = [
   // TODO: Add declarations here, if additional components/directives/... should be exported
+  MenuComponent
 ];
 const INTERNAL_DECLARATIONS = [
   ...EXPORTED_DECLARATIONS

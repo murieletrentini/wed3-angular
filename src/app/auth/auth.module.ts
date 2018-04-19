@@ -8,6 +8,7 @@ import {AuthResourceService, TokenInterceptor} from './resources';
 import {LoginComponent, LogoutComponent,
   RegisterComponent} from './components';
 import {SharedModule} from '../shared/shared.module';
+import {AuthGuard} from "./services/auth.guard";
 
 const EXPORTED_DECLARATIONS = [
   LoginComponent, LogoutComponent, RegisterComponent
@@ -37,7 +38,8 @@ export class AuthModule {
       providers: [
         // DI Providers (Services, Tokens, Factories...) to be used globally and instantiate only once
 
-        // TODO: Add services/guards/... here, if additional classes are placed within the Auth moduley
+        // TODO: Add services/guards/... here, if additional classes are placed within the Auth module
+        AuthGuard,
         AuthService,
         SecurityTokenStore,
         {
