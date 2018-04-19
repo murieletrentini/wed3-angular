@@ -1,0 +1,10 @@
+<mat-toolbar>
+  <span>Bank of Rapperswil</span>
+  <button *ngIf="hasCredentials">Dashboard</button>
+  <button *ngIf="hasCredentials">All Transactions</button>
+  <button *ngIf="!hasCredentials" (click)="navigationService.goToHome()">Home</button>
+  <span class="fill-space"></span>
+  <button *ngIf="!hasCredentials" (click)="navigationService.goToUrl('register')">Register</button>
+  <wed-logout *ngIf="hasCredentials"></wed-logout>
+</mat-toolbar>
+

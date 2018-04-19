@@ -10,6 +10,7 @@ import {AppComponent} from './app.component';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AuthModule} from './auth/auth.module';
+import {SharedModule} from "./shared/shared.module";
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import {AuthModule} from './auth/auth.module';
     FormsModule,
     HttpClientModule,
 
+    SharedModule,
     CoreModule.forRoot(),
     AuthModule.forRoot(),
     WelcomeModule.forRoot(),
