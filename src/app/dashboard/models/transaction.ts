@@ -3,11 +3,11 @@ export class Transaction {
               public target: string,
               public amount: number,
               public total: number,
-              public data: string) {
+              public date: string) {
   }
 
   public static fromDto(data: any): Transaction {
-    return new Transaction(data.from, data.target, data.amount, data.total, data.data);
+    return new Transaction(data.from, data.target, data.amount, data.total, data.date);
   }
 
   public toDto(): any {
@@ -16,7 +16,7 @@ export class Transaction {
       target: this.target,
       amount: this.amount,
       tatal: this.total,
-      data: this.data
+      date: this.date
     };
   }
 }

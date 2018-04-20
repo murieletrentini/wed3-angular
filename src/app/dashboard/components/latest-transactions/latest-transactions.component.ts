@@ -10,7 +10,7 @@ import {MatTableDataSource} from '@angular/material';
 })
 export class LatestTransactionsComponent implements OnInit {
 
-  displayedColumns = ['from', 'to', 'amount'];
+  displayedColumns = ['from', 'to', 'amount', 'balance'];
   dataSource: MatTableDataSource<Transaction>;
 
   constructor(private resourceService: DashboardResourceService) {

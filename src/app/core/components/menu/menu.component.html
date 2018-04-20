@@ -1,7 +1,7 @@
 <mat-toolbar>
   <span>Bank of Rapperswil</span>
-  <button *ngIf="hasCredentials" mat-button>Dashboard</button>
-  <button *ngIf="hasCredentials" mat-button>All Transactions</button>
+  <button *ngIf="hasCredentials" (click)="navigationService.goToUrl('dashboard')" mat-button>Dashboard</button>
+  <button *ngIf="hasCredentials" (click)="navigationService.goToUrl('dashboard/transactions')" mat-button>All Transactions</button>
   <button *ngIf="!hasCredentials" (click)="navigationService.goToHome()" mat-button>Home</button>
   <span class="fill-space"></span>
   <button *ngIf="!hasCredentials" (click)="navigationService.goToUrl('register')" mat-button>Register</button>

@@ -1,16 +1,11 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {AllTransactionsComponent} from './components/all-transactions/all-transactions.component';
 
 const appRoutes: Routes = [
-  {
-    path: '',
-    component: DashboardComponent, // TODO: Add initial router outlet dashboard component...
-    children: [
-      { path: 'allTransactions', component: AllTransactionsComponent }, //TODO: add alltransactions component
-    ]
-  }
+  {path: '', component: DashboardComponent}, // TODO: Add initial router outlet dashboard component...
+  {path: 'transactions', component: AllTransactionsComponent}, //TODO: add alltransactions component
 ];
 
 @NgModule({
@@ -21,4 +16,5 @@ const appRoutes: Routes = [
     RouterModule
   ]
 })
-export class DashbaordRoutingModule {}
+export class DashbaordRoutingModule {
+}
