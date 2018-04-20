@@ -3,10 +3,8 @@ import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
 import {SharedModule} from '../shared/shared.module';
 
 import {NavigationService} from './services';
-import {MenuComponent} from "./components/menu/menu.component";
-import {CommonModule} from "@angular/common";
-import {MatToolbarModule, MatButtonModule} from "@angular/material";
-import {AuthModule} from "../auth/auth.module";
+import {MenuComponent} from './components/menu/menu.component';
+import {AuthModule} from '../auth/auth.module';
 
 const EXPORTED_DECLARATIONS = [
   // TODO: Add declarations here, if additional components/directives/... should be exported
@@ -23,7 +21,7 @@ const EXPORTS = [
 
 @NgModule({
   declarations: INTERNAL_DECLARATIONS,
-  imports: [SharedModule, AuthModule, CommonModule, MatToolbarModule, MatButtonModule],
+  imports: [SharedModule, AuthModule],
   exports: EXPORTS,
   providers: [/* nothing to add here */]
 })

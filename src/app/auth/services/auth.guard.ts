@@ -9,7 +9,6 @@ export class AuthGuard implements CanLoad {
   }
 
   canLoad(route: Route): boolean {
-    console.log(this.authService.hasCredentials);
     if (this.authService.hasCredentials) {
       return true;
     }
