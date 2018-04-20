@@ -3,6 +3,17 @@
     <mat-card-title>Newest Transactions</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    newest payment
+    <form #newPayment="ngForm" (ngSubmit)="onSubmit(newPayment)">
+      <mat-form-field>
+        <input matInput placeholder="From" name="from" value="{{from}} [{{balance}} CHF]" disabled/>
+      </mat-form-field>
+      <mat-form-field hintLabel="Please specify the target account number">
+        <input matInput maxlength="7" minlength="7" pattern="\d{7}" placeholder="To" name="to" ngModel required/>
+      </mat-form-field>
+      <mat-form-field hintLabel="Please enter amount rounded to 5 centimes.">
+        <input matInput pattern="\d+(.\d[0,5])?" placeholder="Amount" name="amount" ngModel required/>
+      </mat-form-field>
+      <button [disabled]="newPayment.form.invalid" mat-button>Pay</button>
+    </form>
   </mat-card-content>
 </mat-card>

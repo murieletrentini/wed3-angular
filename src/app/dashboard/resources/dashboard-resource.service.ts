@@ -4,13 +4,56 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs/observable/of';
 import {catchError, map} from 'rxjs/operators';
-import {Transaction} from '../models';
+import {AccountInfo, Transaction, TransferInfo} from '../models';
+
 
 @Injectable()
 export class DashboardResourceService extends ResourceBase {
 
   constructor(http: HttpClient) {
     super(http);
+  }
+
+  public getAccountInfos(): Observable<AccountInfo> {
+    return this.get('/accounts/').pipe(
+      map((result: any) => {
+        if (result) {
+          return AccountInfo.fromDto(result);
+        }
+        return null;
+      }),
+      catchError((error: any) => of<AccountInfo>(null))
+    );
+  }
+
+  public getAccount(accountNr: string): Observable<{
+    accountNr: string,
+    owner: { firstname: string, lastname: string }
+  }> {
+    return this.get(`/accounts/${accountNr}`).pipe(
+      map((result: any) => {
+        if (result) {
+          return {
+            accountNr: result.accountNr,
+            owner: {firstname: result.owner.firstname, lastname: result.owner.lastname}
+          };
+        }
+        return null;
+      }),
+      catchError((error: any) => of<any>(null))
+    );
+  }
+
+  public transfer(transferInfo: TransferInfo): Observable<Transaction>{
+    return this.post(`/accounts/transactions`, transferInfo.toDto()).pipe(
+      map((result: any) => {
+        if (result) {
+          return Transaction.fromDto(result);
+        }
+        return null;
+      }),
+      catchError((error: any) => of<Transaction>(null))
+    );
   }
 
   public getTransactions(fromDate: string = '', toDate: string = '', count: number = 3, skip: number = 0): Observable<Transaction[]> {

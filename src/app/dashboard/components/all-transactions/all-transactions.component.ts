@@ -35,7 +35,7 @@ export class AllTransactionsComponent implements OnInit {
   ngOnInit() {
     this.applyFilter()
   }
-  
+
   applyFilter() {
     let year = parseInt(this.selectedYear);
     let month = parseInt(this.selectedMonth);
