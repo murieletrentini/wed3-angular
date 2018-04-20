@@ -5,6 +5,7 @@ import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs/observable/of';
 import {catchError, map} from 'rxjs/operators';
 import {AccountInfo, Transaction, TransferInfo} from '../models';
+import {Account} from "../../auth/models";
 
 
 @Injectable()
@@ -26,25 +27,20 @@ export class DashboardResourceService extends ResourceBase {
     );
   }
 
-  public getAccount(accountNr: string): Observable<{
-    accountNr: string,
-    owner: { firstname: string, lastname: string }
-  }> {
+  public getAccount(accountNr: string): Observable<AccountInfo> {
     return this.get(`/accounts/${accountNr}`).pipe(
       map((result: any) => {
         if (result) {
-          return {
-            accountNr: result.accountNr,
-            owner: {firstname: result.owner.firstname, lastname: result.owner.lastname}
-          };
+          return new AccountInfo(result.accountNr, 0,
+            new Account('', result.owner.firstname, result.owner.lastname, result.acc));
         }
         return null;
       }),
-      catchError((error: any) => of<any>(null))
+      catchError((error: any) => of<AccountInfo>(null))
     );
   }
 
-  public transfer(transferInfo: TransferInfo): Observable<Transaction>{
+  public transfer(transferInfo: TransferInfo): Observable<Transaction> {
     return this.post(`/accounts/transactions`, transferInfo.toDto()).pipe(
       map((result: any) => {
         if (result) {

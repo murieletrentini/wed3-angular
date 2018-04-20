@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../../auth/services";
 import {DashboardResourceService} from "../../resources/dashboard-resource.service";
-import {TransferInfo} from "../../models";
+import {AccountInfo, TransferInfo} from "../../models";
 
 @Component({
   selector: 'wed-new-payment',
@@ -9,32 +9,39 @@ import {TransferInfo} from "../../models";
   styleUrls: ['./new-payment.component.scss']
 })
 export class NewPaymentComponent implements OnInit {
-  private accountNr: string;
-  private accountBalance: number;
+  public from: string;
+  public balance: number;
+  public toLabel: string = "Please specify the target account number";
 
-  public get from(): string {
-    return this.accountNr;
-  }
-
-  public get balance(): number {
-    return this.accountBalance;
-  }
 
   constructor(private authService: AuthService, private dashboardResourceService: DashboardResourceService) {
   }
 
+  lookUpTo(newValue: string, f) {
+    this.dashboardResourceService.getAccount(newValue).subscribe(
+      (a: AccountInfo) => {
+        if (a) {
+          this.toLabel = `${a.owner.firstname} ${a.owner.lastname}`;
+        } else{
+          this.toLabel = 'Unknown account';
+          f.form.controls['to'].setErrors({'incorrect': true});
+        }
+      }
+    );
+
+  }
+
   ngOnInit() {
-    this.accountNr = this.authService.authenticatedUser.accountNr;
+    this.from = this.authService.authenticatedUser.accountNr;
     this.dashboardResourceService.getAccountInfos().subscribe(
-      a => this.accountBalance = a.amount
+      a => this.balance = a.amount
     );
   }
 
   //TODO: lookup 'to' account
   onSubmit(f) {
-    console.log(f.value);
-    if (f.form.valid){
-      this.dashboardResourceService.transfer(new TransferInfo(f.value.to, f.value.amount ));
+    if (f.form.valid) {
+      this.dashboardResourceService.transfer(new TransferInfo(f.value.to, f.value.amount));
     }
 
   }
