@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForm} from '@angular/forms';
+import {FormControl, NgForm, Validators} from '@angular/forms';
 
 import {NavigationService} from '../../core';
 
@@ -15,10 +15,32 @@ export class RegisterComponent implements OnInit {
 
   public login: string;
   public password: string;
-  public firstname: string;
-  public lastname: string;
+  public passwordConfirmation: string;
+  public firstName: string;
+  public lastName: string;
 
   public isProcessing = false;
+
+  protected firstNameFormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(3)
+  ]);
+  protected lastNameFormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(3)
+  ]);
+  protected loginFormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(3)
+  ]);
+  protected passwordFormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(3)
+  ]);
+  protected confirmPasswordFormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(3)
+  ]);
 
   constructor(private autSvc: AuthService, private navigationSvc: NavigationService) {
   }
@@ -33,14 +55,14 @@ export class RegisterComponent implements OnInit {
       });
   }
 
-  public doRegister(f: NgForm): boolean {
-    if (f && f.valid) {
+  public doRegister(registrationForm: NgForm): boolean {
+    if (registrationForm && registrationForm.valid) {
       this.isProcessing = true;
       this.autSvc.register(new RegistrationInfo(
-        f.value.login,
-        f.value.password,
-        f.value.firstname,
-        f.value.lastname));
+        registrationForm.value.login,
+        registrationForm.value.password,
+        registrationForm.value.firstname,
+        registrationForm.value.lastname));
     }
     return false;
   }

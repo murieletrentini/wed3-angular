@@ -1,11 +1,10 @@
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatTableModule, MatToolbarModule, MatButtonModule, MatCardModule, MatSelectModule,
-  MatFormFieldModule, MatInputModule
+  MatFormFieldModule, MatInputModule,MatGridListModule,
 } from '@angular/material';
 import {CommonModule} from '@angular/common';
-
 
 const EXPORTED_DECLARATIONS = [
   // TODO: Add declarations here, if additional components/directives/... should be exported
@@ -24,7 +23,9 @@ const EXPORTS = [
   MatSelectModule,
   MatFormFieldModule,
   MatInputModule,
+  MatGridListModule,
   FormsModule,
+  ReactiveFormsModule,
   CommonModule
   // TODO: Add exports here, if additional modules should be exported
 ];
