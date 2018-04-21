@@ -5,6 +5,7 @@ import {SharedModule} from '../shared/shared.module';
 import {NavigationService} from './services';
 import {MenuComponent} from './components/menu/menu.component';
 import {AuthModule} from '../auth/auth.module';
+import {RouterModule} from '@angular/router';
 
 const EXPORTED_DECLARATIONS = [
   // TODO: Add declarations here, if additional components/directives/... should be exported
@@ -21,7 +22,7 @@ const EXPORTS = [
 
 @NgModule({
   declarations: INTERNAL_DECLARATIONS,
-  imports: [SharedModule, AuthModule],
+  imports: [SharedModule, AuthModule, RouterModule],
   exports: EXPORTS,
   providers: [/* nothing to add here */]
 })

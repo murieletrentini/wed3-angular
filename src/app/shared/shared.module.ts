@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatTableModule, MatToolbarModule, MatButtonModule, MatCardModule, MatSelectModule,
-  MatFormFieldModule, MatInputModule,MatGridListModule,
+  MatFormFieldModule, MatInputModule,
 } from '@angular/material';
 import {CommonModule} from '@angular/common';
 
@@ -23,7 +23,6 @@ const EXPORTS = [
   MatSelectModule,
   MatFormFieldModule,
   MatInputModule,
-  MatGridListModule,
   FormsModule,
   ReactiveFormsModule,
   CommonModule

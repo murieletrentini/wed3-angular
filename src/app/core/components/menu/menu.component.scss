@@ -1,3 +1,17 @@
-.fill-space{
-  flex: 1 1 auto;
+@import "../../../../theme";
+
+:host {
+  span {
+    margin-right: 2rem;
+  }
+
+  .active {
+    background-color: mat-color($wed-primary, 900);
+  }
+
+  .fill-space{
+    flex: 1 1 auto;
+  }
 }
+
+

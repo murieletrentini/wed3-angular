@@ -1,0 +1,10 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$wed-primary: mat-palette($mat-indigo);
+$wed-accent:  mat-palette($mat-pink);
+$wed-warn:    mat-palette($mat-red);
+
+$wed-theme: mat-light-theme($wed-primary, $wed-accent, $wed-warn);
+
+@include angular-material-theme($wed-theme);
