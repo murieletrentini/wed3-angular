@@ -1,15 +1,15 @@
 export class TransferInfo {
-  constructor(public to: string,
+  constructor(public target: string,
               public amount: number) {
   }
 
   public static fromDto(data: any): TransferInfo {
-    return new TransferInfo(data.to, data.amount);
+    return new TransferInfo(data.target, data.amount);
   }
 
   toDto(): any {
     return {
-      to: this.to,
+      target: this.target,
       amount: this.amount
     };
   }
