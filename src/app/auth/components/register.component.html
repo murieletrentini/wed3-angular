@@ -1,63 +1,61 @@
 <mat-card>
 
-  <form #registrationForm="ngForm" (ngSubmit)="doRegister(registrationForm)">
+  <form [formGroup]="registrationForm" (ngSubmit)="doRegister()">
 
     <mat-form-field class="full-width">
-      <input matInput [formControl]="firstNameFormControl" placeholder="First name" type="text" name="firstName"
-             [(ngModel)]="firstName">
-      <mat-error *ngIf="firstNameFormControl.hasError('required')">
+      <input matInput formControlName="firstName" placeholder="First name" type="text">
+      <mat-error *ngIf="registrationForm.get('firstName').hasError('required')">
         Please specify your first name
       </mat-error>
-      <mat-error *ngIf="firstNameFormControl.hasError('minLength')">
+      <mat-error *ngIf="registrationForm.get('firstName').hasError('minlength')">
         At least three characters
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <input matInput [formControl]="lastNameFormControl" placeholder="Last name" type="text" name="lastName"
-             [(ngModel)]="lastName">
-      <mat-error *ngIf="lastNameFormControl.hasError('required')">
+      <input matInput formControlName="lastName" placeholder="Last name" type="text">
+      <mat-error *ngIf="registrationForm.get('lastName').hasError('required')">
         Please specify your last name
       </mat-error>
-      <mat-error *ngIf="lastNameFormControl.hasError('minLength')">
+      <mat-error *ngIf="registrationForm.get('lastName').hasError('minlength')">
         At least three characters
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <input matInput [formControl]="loginFormControl" placeholder="User name" type="text" name="login"
-             [(ngModel)]="login">
-      <mat-error *ngIf="loginFormControl.hasError('required')">
+      <input matInput formControlName="login" placeholder="User name" type="text">
+      <mat-error *ngIf="registrationForm.get('login').hasError('required')">
         Please specify your login
       </mat-error>
-      <mat-error *ngIf="loginFormControl.hasError('minLength')">
+      <mat-error *ngIf="registrationForm.get('login').hasError('minlength')">
         At least three characters
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <input matInput [formControl]="passwordFormControl" placeholder="Password" type="password" name="password"
-             [(ngModel)]="password">
-      <mat-error *ngIf="passwordFormControl.hasError('required')">
+      <input matInput formControlName="password" placeholder="Password" type="password">
+      <mat-error *ngIf="registrationForm.get('password').hasError('required')">
         Please specify your password
       </mat-error>
-      <mat-error *ngIf="passwordFormControl.hasError('minLength')">
+      <mat-error *ngIf="registrationForm.get('password').hasError('minlength')">
         At least three characters
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <input matInput [formControl]="confirmPasswordFormControl" placeholder="Confirm Password" type="password"
-             name="passwordConfirm" [(ngModel)]="passwordConfirmation">
-      <mat-error *ngIf="confirmPasswordFormControl.hasError('required')">
+      <input matInput formControlName="passwordConfirm" placeholder="Confirm Password" type="password">
+      <mat-error *ngIf="registrationForm.get('passwordConfirm').hasError('required')">
         Please confirm the password
       </mat-error>
-      <mat-error *ngIf="confirmPasswordFormControl.hasError('minLength')">
+      <mat-error *ngIf="registrationForm.get('passwordConfirm').hasError('minlength')">
         At least three characters
+      </mat-error>
+      <mat-error *ngIf="registrationForm.get('passwordConfirm').hasError('validatePassword')">
+        Please confirm the password
       </mat-error>
     </mat-form-field>
 
-    <button [disabled]="registrationForm.form.invalid" mat-raised-button>Register</button>
+    <button [disabled]="!registrationForm.valid" mat-raised-button>Register</button>
 
   </form>
 </mat-card>

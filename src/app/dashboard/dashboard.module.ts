@@ -31,7 +31,9 @@ const EXPORTS = [
   declarations: INTERNAL_DECLARATIONS,
   imports: [
     // Other Modules to import (imports the exported Components/Directives from the other module)
-    SharedModule, DashbaordRoutingModule, AuthModule
+    SharedModule,
+    DashbaordRoutingModule,
+    AuthModule
   ],
   exports: EXPORTS,
   providers: [

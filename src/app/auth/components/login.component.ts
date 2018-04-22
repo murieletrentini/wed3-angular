@@ -1,6 +1,6 @@
 import {ActivatedRoute, Params} from '@angular/router';
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 
 import {NavigationService} from '../../core';
 
@@ -15,24 +15,21 @@ import {LoginInfo} from '../models';
 export class LoginComponent implements OnInit {
 
   private backUrl;
-
-  public login: string;
-  public password: string;
-
+  public loginForm: FormGroup;
   public isProcessing = false;
 
-  protected loginFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(3)
-  ]);
-  protected passwordFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(3)
-  ]);
+  constructor(fb: FormBuilder, private autSvc: AuthService, private navigationSvc: NavigationService, route: ActivatedRoute) {
+    route.params.subscribe((p: Params) => this.backUrl = p['backUrl']);
 
-  constructor(private autSvc: AuthService, private navigationSvc: NavigationService, route: ActivatedRoute) {
-    route.params.subscribe(
-      (p: Params) => this.backUrl = p['backUrl']);
+    this.loginForm = fb.group({
+      login: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
+    });
   }
 
   ngOnInit() {
@@ -50,10 +47,13 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  public doLogin(loginForm: NgForm): void {
-    if (loginForm && loginForm.valid) {
+  public doLogin(): void {
+    if (this.loginForm.valid) {
       this.isProcessing = true;
-      this.autSvc.login(new LoginInfo(this.login, this.password));
+      this.autSvc.login(new LoginInfo(
+        this.loginForm.get('login').value,
+        this.loginForm.get('password').value,
+      ));
     }
   }
 }

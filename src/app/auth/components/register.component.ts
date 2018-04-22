@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {NavigationService} from '../../core';
 
 import {AuthService} from '../services';
 import {RegistrationInfo} from '../models';
+import {PasswordValidator} from '../../dashboard/validator/password-validator';
 
 @Component({
   selector: 'wed-register',
@@ -13,36 +14,34 @@ import {RegistrationInfo} from '../models';
 })
 export class RegisterComponent implements OnInit {
 
-  public login: string;
-  public password: string;
-  public passwordConfirmation: string;
-  public firstName: string;
-  public lastName: string;
-
+  public registrationForm: FormGroup;
   public isProcessing = false;
 
-  protected firstNameFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(3)
-  ]);
-  protected lastNameFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(3)
-  ]);
-  protected loginFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(3)
-  ]);
-  protected passwordFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(3)
-  ]);
-  protected confirmPasswordFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(3)
-  ]);
+  constructor(fb: FormBuilder, private autSvc: AuthService, private navigationSvc: NavigationService) {
 
-  constructor(private autSvc: AuthService, private navigationSvc: NavigationService) {
+    this.registrationForm = fb.group({
+      firstName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
+      lastName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
+      login: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
+      passwordConfirm: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+    }, {
+      validator: PasswordValidator.validatePassword
+    });
   }
 
   ngOnInit() {
@@ -55,14 +54,15 @@ export class RegisterComponent implements OnInit {
       });
   }
 
-  public doRegister(registrationForm: NgForm): boolean {
-    if (registrationForm && registrationForm.valid) {
+  public doRegister(): boolean {
+    if (this.registrationForm.valid) {
       this.isProcessing = true;
       this.autSvc.register(new RegistrationInfo(
-        registrationForm.value.login,
-        registrationForm.value.password,
-        registrationForm.value.firstname,
-        registrationForm.value.lastname));
+        this.registrationForm.get('login').value,
+        this.registrationForm.get('password').value,
+        this.registrationForm.get('firstName').value,
+        this.registrationForm.get('lastName').value,
+      ));
     }
     return false;
   }

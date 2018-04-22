@@ -2,7 +2,7 @@
   <span>Bank of Rapperswil</span>
   <button *ngIf="hasCredentials" routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" mat-button>Dashboard</button>
   <button *ngIf="hasCredentials" routerLink="/dashboard/transactions" routerLinkActive="active" mat-button>All Transactions</button>
-  <button *ngIf="!hasCredentials" routerLink="/" routerLinkActive="active" mat-button>Home</button>
+  <button *ngIf="!hasCredentials" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  mat-button>Home</button>
   <span class="fill-space"></span>
   <button *ngIf="!hasCredentials" routerLink="/register" routerLinkActive="active" mat-button>Register</button>
   <wed-logout *ngIf="hasCredentials"></wed-logout>

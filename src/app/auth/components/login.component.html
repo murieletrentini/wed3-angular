@@ -1,29 +1,30 @@
 <!-- TODO: Add ng specific directives/validation settings and add styling -->
 <mat-card>
 
-  <form #loginForm="ngForm" (ngSubmit)="doLogin(loginForm)">
+  <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
 
     <mat-form-field class="full-width">
-      <input matInput [formControl]="loginFormControl" placeholder="User name" type="text" name="login" [(ngModel)]="login">
-      <mat-error *ngIf="loginFormControl.hasError('required')">
+      <input matInput formControlName="login" placeholder="User name" type="text">
+      <mat-error *ngIf="loginForm.get('login').hasError('required')">
         Please specify your login
       </mat-error>
-      <mat-error *ngIf="loginFormControl.hasError('minLength')">
+      <mat-error *ngIf="loginForm.get('login').hasError('minlength')">
         At least three characters
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <input matInput [formControl]="passwordFormControl" placeholder="Password" type="password" name="password" [(ngModel)]="password">
-      <mat-error *ngIf="passwordFormControl.hasError('required')">
+      <input matInput formControlName="password" placeholder="Password" type="password">
+      <mat-error *ngIf="loginForm.get('password').hasError('required')">
         Please specify your password
       </mat-error>
-      <mat-error *ngIf="passwordFormControl.hasError('minLength')">
+      <mat-error *ngIf="loginForm.get('password').hasError('minlength')">
         At least three characters
       </mat-error>
     </mat-form-field>
 
-    <button [disabled]="!loginForm.valid" mat-raised-button	>Login</button>
+    <button [disabled]="!loginForm.valid" mat-raised-button>Register</button>
+
   </form>
 
 </mat-card>

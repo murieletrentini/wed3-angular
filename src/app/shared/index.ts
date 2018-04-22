@@ -1,1 +1,3 @@
 // TODO: Add barrel exports (export * from '...';) here...
+export * from './directives';
+
