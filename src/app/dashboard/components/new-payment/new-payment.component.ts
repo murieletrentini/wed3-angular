@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../auth/services';
 import {DashboardResourceService} from '../../resources/dashboard-resource.service';
 import {AccountInfo, Transaction, TransferInfo} from '../../models';
+import {DashboardCommunicationService} from "../../services/dashboard-communication.service";
 
 @Component({
   selector: 'wed-new-payment',
@@ -16,7 +17,7 @@ export class NewPaymentComponent implements OnInit {
   public toLabel: string = this.TO_LABEL;
   public paymentSucceeded: boolean = false;
 
-  constructor(private authService: AuthService, private dashboardResourceService: DashboardResourceService) {
+  constructor(private authService: AuthService, private dashboardResourceService: DashboardResourceService, private dashboardCommunicationService: DashboardCommunicationService) {
   }
 
   lookUpTo(newValue: string, f) {
@@ -50,6 +51,7 @@ export class NewPaymentComponent implements OnInit {
           console.log(t);
           if (t) {
             this.paymentSucceeded = true;
+            this.dashboardCommunicationService.alertPayment();
             this.refreshBalance();
           }
         }
