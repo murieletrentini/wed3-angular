@@ -13,7 +13,7 @@ export class AuthGuard implements CanLoad, CanActivate {
     if (this.authService.hasCredentials) {
       return true;
     }
-    this.navigationService.goToHome();
+    this.navigationService.goToLogin();
     return false;
   }
 

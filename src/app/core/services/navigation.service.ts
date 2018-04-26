@@ -14,6 +14,10 @@ export class NavigationService {
     this.goToUrl('/'); // TODO: adjust routing according this URL
   }
 
+  public goToLogin(): void {
+    this.goToUrl('/welcome'); // TODO: adjust routing according this URL
+  }
+
   public goToDashboard(): void {
     this.goToUrl('/dashboard'); // TODO: adjust routing according this URL
   }

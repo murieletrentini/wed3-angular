@@ -5,12 +5,12 @@ import {RegisterComponent} from './auth/components';
 
 const appRoutes: Routes = [
   // TODO: Add routing of lazy loaded dashboard Module (with guards) here...
+  {path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule', canLoad: [AuthGuard]},
 
   // TODO: Add routing of eagerly loaded modules here...
-
-  {path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule', canLoad: [AuthGuard]},
   {path: 'register', component: RegisterComponent},
-  {path: '', redirectTo: '/welcome', pathMatch: 'full'}
+  {path: '', redirectTo: '/welcome', pathMatch: 'full'},
+  {path: '**', redirectTo: '/welcome', pathMatch: 'full'}
 ];
 
 @NgModule({
