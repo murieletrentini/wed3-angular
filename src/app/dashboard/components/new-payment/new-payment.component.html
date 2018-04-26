@@ -25,6 +25,9 @@
         <mat-error *ngIf="targetInput.errors?.required">
           Target account number is required
         </mat-error>
+        <mat-error *ngIf="targetInput.errors?.selfReference">
+          You cannot send money to yourself
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">

@@ -44,20 +44,23 @@ export class NewPaymentComponent implements OnInit {
   }
 
   onSubmit(f) {
-    if (f.form.valid && this.amount <= this.balance) {
-      this.toLabel = this.TO_LABEL;
-      this.dashboardResourceService.transfer(new TransferInfo(this.target, this.amount)).subscribe(
-        (t: Transaction) => {
-          console.log(t);
-          if (t) {
-            this.paymentSucceeded = true;
-            this.dashboardCommunicationService.alertPayment();
-            this.refreshBalance();
+    if (f.form.valid) {
+      if (this.amount >= this.balance) {
+        f.form.controls['amount'].setErrors({'range': true});
+      } else if (this.target == this.from) {
+        f.form.controls['target'].setErrors({'selfReference': true});
+      } else {
+        this.toLabel = this.TO_LABEL;
+        this.dashboardResourceService.transfer(new TransferInfo(this.target, this.amount)).subscribe(
+          (t: Transaction) => {
+            if (t) {
+              this.paymentSucceeded = true;
+              this.dashboardCommunicationService.alertPayment();
+              this.refreshBalance();
+            }
           }
-        }
-      );
-    } else {
-      f.form.controls['amount'].setErrors({'range': true});
+        );
+      }
     }
   }
 
