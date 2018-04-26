@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, CanLoad, Route, RouterStateSnapshot} from '@angular/router';
-import {AuthService} from "./auth.service";
-import {NavigationService} from "../../core/services";
-import {Observable} from "rxjs/Observable";
+import {AuthService} from './auth.service';
+import {NavigationService} from '../../core/services';
 
 @Injectable()
 export class AuthGuard implements CanLoad, CanActivate {
@@ -19,7 +18,7 @@ export class AuthGuard implements CanLoad, CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (this.authService.hasCredentials){
+    if (this.authService.hasCredentials) {
       this.navigationService.goToDashboard();
       return false;
     }

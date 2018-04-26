@@ -1,9 +1,9 @@
-import {Injectable, EventEmitter} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 
 import {isBlank} from '../../core';
 
 import {AuthResourceService} from '../resources';
-import {LoginInfo, RegistrationInfo, Credential, Account} from '../models';
+import {Account, Credential, LoginInfo, RegistrationInfo} from '../models';
 
 import {SecurityTokenStore} from './credential-management';
 
@@ -32,16 +32,16 @@ export class AuthService {
     this.resource.register(registerModel).subscribe(
       (data: Account) => {
         this.login(registerModel);
-      } );
+      });
   }
 
-  public login(loginModel: LoginInfo):void {
+  public login(loginModel: LoginInfo): void {
     this.resource.login(loginModel).subscribe(
       (data: Credential) => {
         this.tokenStore.storedValue = data;
         this.authUser = !isBlank(data) ? data.owner : null;
         this.authenticatedUserChange.emit(this.authenticatedUser);
-      } );
+      });
   }
 
   public logout(): void {

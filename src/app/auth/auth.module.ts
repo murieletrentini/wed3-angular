@@ -7,8 +7,8 @@ import {AuthResourceService, TokenInterceptor} from './resources';
 
 import {LoginComponent, LogoutComponent, RegisterComponent} from './components';
 import {SharedModule} from '../shared/shared.module';
-import {AuthGuard} from "./services/auth.guard";
-import {MatButtonModule} from "@angular/material";
+import {AuthGuard} from './services/auth.guard';
+import {MatButtonModule} from '@angular/material';
 
 
 const EXPORTED_DECLARATIONS = [

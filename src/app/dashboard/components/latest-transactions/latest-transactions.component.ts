@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DashboardResourceService} from '../../resources/dashboard-resource.service';
 import {Transaction} from '../../models';
 import {MatTableDataSource} from '@angular/material';
-import {DashboardCommunicationService} from "../../services/dashboard-communication.service";
+import {DashboardCommunicationService} from '../../services/dashboard-communication.service';
 
 @Component({
   selector: 'wed-latest-transactions',

@@ -1,12 +1,17 @@
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
-  MatTableModule, MatToolbarModule, MatButtonModule, MatCardModule, MatSelectModule,
-  MatFormFieldModule, MatInputModule,
+  MatButtonModule,
+  MatCardModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule,
+  MatTableModule,
+  MatToolbarModule,
 } from '@angular/material';
 import {CommonModule} from '@angular/common';
 import {EqualValidator} from './directives/equal-validator.directive';
-import {ErrorMessageComponent} from "./error-message/error-message.component";
+import {ErrorMessageComponent} from './error-message/error-message.component';
 
 const EXPORTED_DECLARATIONS = [
   // TODO: Add declarations here, if additional components/directives/... should be exported

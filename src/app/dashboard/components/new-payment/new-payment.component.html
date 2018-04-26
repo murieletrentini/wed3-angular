@@ -31,7 +31,8 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput pattern="\d+(\.\d([05])?)?" placeholder="Amount" name="amount" type="number" [(ngModel)]="amount" #amountInput="ngModel" required/>
+        <input matInput pattern="\d+(\.\d([05])?)?" placeholder="Amount" name="amount" type="number"
+               [(ngModel)]="amount" #amountInput="ngModel" required/>
         <mat-error *ngIf="amountInput.errors?.required">
           Amount is required
         </mat-error>

@@ -3,7 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {LoginComponent, RegisterComponent} from '../auth/components';
 import {WelcomeComponent} from './welcome.component';
-import {AuthGuard} from "../auth/services/auth.guard";
+import {AuthGuard} from '../auth/services/auth.guard';
 
 const appRoutes: Routes = [
   {
@@ -12,8 +12,8 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],
     // TODO: Add guard and routing (Register/Login) here...
     children: [
-      { path: 'register', component: RegisterComponent },
-      { path: '', component: LoginComponent }
+      {path: 'register', component: RegisterComponent},
+      {path: '', component: LoginComponent}
     ]
   }
 ];
@@ -26,4 +26,5 @@ const appRoutes: Routes = [
     RouterModule
   ]
 })
-export class WelcomeRoutingModule {}
+export class WelcomeRoutingModule {
+}

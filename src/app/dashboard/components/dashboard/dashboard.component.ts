@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {DashboardCommunicationService} from "../../services/dashboard-communication.service";
+import {Component, OnInit} from '@angular/core';
+import {DashboardCommunicationService} from '../../services/dashboard-communication.service';
 
 @Component({
   selector: 'wed-dashboard',
@@ -9,7 +9,8 @@ import {DashboardCommunicationService} from "../../services/dashboard-communicat
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

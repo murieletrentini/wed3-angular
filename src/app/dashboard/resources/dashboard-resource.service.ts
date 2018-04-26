@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs/observable/of';
 import {catchError, map} from 'rxjs/operators';
 import {AccountInfo, Transaction, TransferInfo} from '../models';
-import {Account} from "../../auth/models";
+import {Account} from '../../auth/models';
 
 
 @Injectable()

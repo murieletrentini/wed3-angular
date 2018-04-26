@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
   public isProcessing: boolean = false;
   public hasError: boolean = false;
   public errorMsg = {
-    header: "Invalid credentials",
-    message: "Please try again."
+    header: 'Invalid credentials',
+    message: 'Please try again.'
   };
 
 

@@ -1,6 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {inject, TestBed} from '@angular/core/testing';
 
-import { DashboardResourceService } from './dashboard-resource.service';
+import {DashboardResourceService} from './dashboard-resource.service';
 
 describe('DashboardResourceService', () => {
   beforeEach(() => {

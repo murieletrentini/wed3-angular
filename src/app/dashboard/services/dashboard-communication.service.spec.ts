@@ -1,6 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {inject, TestBed} from '@angular/core/testing';
 
-import { DashboardCommunicationService } from './dashboard-communication.service';
+import {DashboardCommunicationService} from './dashboard-communication.service';
 
 describe('DashboardCommunicationService', () => {
   beforeEach(() => {

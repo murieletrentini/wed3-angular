@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
-import {Subject} from "rxjs/Subject";
+import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class DashboardCommunicationService {
 
-  constructor() { }
+  constructor() {
+  }
 
   // Observable string sources
   private paymentAlert = new Subject<void>();

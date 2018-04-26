@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../../../auth/services";
-import {NavigationService} from "../../services";
+import {AuthService} from '../../../auth/services';
+import {NavigationService} from '../../services';
 
 
 @Component({
@@ -14,7 +14,7 @@ export class MenuComponent implements OnInit {
   }
 
   public get hasCredentials(): boolean {
-    return this.authService.hasCredentials
+    return this.authService.hasCredentials;
   }
 
   ngOnInit() {

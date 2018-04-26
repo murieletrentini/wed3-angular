@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Transaction} from "../../models";
-import {DashboardResourceService} from "../../resources/dashboard-resource.service";
-import {MatTableDataSource} from "@angular/material";
+import {Transaction} from '../../models';
+import {DashboardResourceService} from '../../resources/dashboard-resource.service';
+import {MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'wed-all-transactions',
@@ -33,7 +33,7 @@ export class AllTransactionsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.applyFilter()
+    this.applyFilter();
   }
 
   applyFilter() {

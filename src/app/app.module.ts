@@ -9,8 +9,8 @@ import {AppComponent} from './app.component';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AuthModule} from './auth/auth.module';
-import {SharedModule} from "./shared/shared.module";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {SharedModule} from './shared/shared.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -28,9 +28,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
     AppRoutingModule
   ],
-  providers: [
-
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

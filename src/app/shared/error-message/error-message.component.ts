@@ -9,7 +9,8 @@ export class ErrorMessageComponent implements OnInit {
   @Input() header: String;
   @Input() message: String;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
