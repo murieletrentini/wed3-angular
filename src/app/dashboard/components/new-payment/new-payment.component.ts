@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../../../auth/services";
-import {DashboardResourceService} from "../../resources/dashboard-resource.service";
-import {AccountInfo, Transaction, TransferInfo} from "../../models";
+import {AuthService} from '../../../auth/services';
+import {DashboardResourceService} from '../../resources/dashboard-resource.service';
+import {AccountInfo, Transaction, TransferInfo} from '../../models';
 
 @Component({
   selector: 'wed-new-payment',
@@ -9,7 +9,7 @@ import {AccountInfo, Transaction, TransferInfo} from "../../models";
   styleUrls: ['./new-payment.component.scss']
 })
 export class NewPaymentComponent implements OnInit {
-  private TO_LABEL : string = "Please specify the target account number";
+  private TO_LABEL: string = 'Please specify the target account number';
   public from: string;
   public target: string;
   public balance: number;
@@ -20,7 +20,7 @@ export class NewPaymentComponent implements OnInit {
   }
 
   lookUpTo(newValue: string, f) {
-    if (newValue !== ''){
+    if (newValue !== '') {
       this.dashboardResourceService.getAccount(newValue).subscribe(
         (a: AccountInfo) => {
           if (a) {
@@ -57,7 +57,7 @@ export class NewPaymentComponent implements OnInit {
     }
   }
 
-  private refreshBalance(){
+  private refreshBalance() {
     this.dashboardResourceService.getAccountInfos().subscribe(
       infos => this.balance = infos.amount
     );
