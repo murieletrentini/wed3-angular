@@ -1,10 +1,22 @@
 <mat-toolbar class="mat-elevation-z3" color="primary">
+  <!-- left side of menu -->
   <span>Bank of Rapperswil</span>
-  <button *ngIf="hasCredentials" routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" mat-button>Dashboard</button>
-  <button *ngIf="hasCredentials" routerLink="/dashboard/transactions" routerLinkActive="active" mat-button>All Transactions</button>
-  <button *ngIf="!hasCredentials" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  mat-button>Home</button>
+  <button *ngIf="hasCredentials" routerLink="/dashboard" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact:true}" mat-button>
+    Dashboard
+  </button>
+  <button *ngIf="hasCredentials" routerLink="/dashboard/transactions" routerLinkActive="active" mat-button>All
+    Transactions
+  </button>
+  <button *ngIf="!hasCredentials" routerLink="/welcome" routerLinkActive="active"
+          mat-button>
+    Home
+  </button>
   <span class="fill-space"></span>
-  <button *ngIf="!hasCredentials" routerLink="/register" routerLinkActive="active" mat-button>Register</button>
+  <!-- right side of menu -->
+  <button *ngIf="!hasCredentials" routerLink="/register" routerLinkActive="active" mat-button>
+    Register
+  </button>
   <wed-logout *ngIf="hasCredentials"></wed-logout>
 </mat-toolbar>
 
