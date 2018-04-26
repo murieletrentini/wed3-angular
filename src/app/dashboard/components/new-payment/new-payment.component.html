@@ -3,24 +3,45 @@
     <mat-card-title>New Payment</mat-card-title>
   </mat-card-header>
   <mat-card-content *ngIf="!paymentSucceeded">
-    <form #newPayment="ngForm" (ngSubmit)="onSubmit(newPayment)">
 
+    <form #newPaymentForm="ngForm" (ngSubmit)="onSubmit(newPaymentForm)">
 
       <mat-form-field class="full-width">
         <input matInput placeholder="From" name="from" value="{{from}} [{{balance |currency:' '}} CHF]" disabled/>
       </mat-form-field>
 
-      <mat-form-field hintLabel="{{toLabel}}" class="full-width">
-        <input matInput maxlength="7" minlength="7" pattern="\d{7}" placeholder="To" name="target" type="number" ngModel
-               (ngModelChange)="lookUpTo($event, newPayment)" required/>
+      <mat-form-field class="full-width">
+        <input matInput pattern="\d{7}" placeholder="To" name="target" type="number" [(ngModel)]="target"
+               (input)="lookUpTo($event.target.value, newPaymentForm)" required #targetInput="ngModel"/>
+        <mat-hint *ngIf="targetInput.valid">
+          {{toLabel}}
+        </mat-hint>
+        <mat-hint *ngIf="targetInput.errors?.pattern">
+          Account number must be at exactly 7 chars.
+        </mat-hint>
+        <mat-hint *ngIf="targetInput.errors?.unknown">
+          Unknown account
+        </mat-hint>
+        <mat-error *ngIf="targetInput.errors?.required">
+          Target account number is required
+        </mat-error>
       </mat-form-field>
 
-      <mat-form-field hintLabel="Please enter amount rounded to 5 centimes." class="full-width">
-        <input matInput pattern="\d+(.\d[0,5])?" placeholder="Amount" name="amount" type="number" ngModel required/>
+      <mat-form-field class="full-width">
+        <input matInput pattern="\d+(.\d[0,5])?" placeholder="Amount" name="amount" type="number" [(ngModel)]="amount" #amountInput="ngModel" required/>
+        <mat-error *ngIf="amountInput.errors?.required">
+          Amount is required
+        </mat-error>
+        <mat-error *ngIf="amountInput.errors?.pattern">
+          Please enter amount rounded to 5 centimes.
+        </mat-error>
+        <mat-error *ngIf="amountInput.errors?.range">
+          Invalid amount entered. Please check your balance.
+        </mat-error>
       </mat-form-field>
 
-      <button [disabled]="newPayment.form.invalid" mat-raised-button>Pay</button>
 
+      <button [disabled]="newPaymentForm.form.invalid" mat-raised-button>Pay</button>
     </form>
   </mat-card-content>
   <mat-card-content *ngIf="paymentSucceeded">

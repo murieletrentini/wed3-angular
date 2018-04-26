@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../auth/services';
 import {DashboardResourceService} from '../../resources/dashboard-resource.service';
 import {AccountInfo, Transaction, TransferInfo} from '../../models';
-import {DashboardCommunicationService} from "../../services/dashboard-communication.service";
+import {DashboardCommunicationService} from '../../services/dashboard-communication.service';
 
 @Component({
   selector: 'wed-new-payment',
@@ -13,23 +13,25 @@ export class NewPaymentComponent implements OnInit {
   private TO_LABEL: string = 'Please specify the target account number';
   public from: string;
   public target: string;
+  public amount: number;
   public balance: number;
   public toLabel: string = this.TO_LABEL;
   public paymentSucceeded: boolean = false;
 
-  constructor(private authService: AuthService, private dashboardResourceService: DashboardResourceService, private dashboardCommunicationService: DashboardCommunicationService) {
+  constructor(private authService: AuthService,
+              private dashboardResourceService: DashboardResourceService,
+              private dashboardCommunicationService: DashboardCommunicationService) {
   }
 
-  lookUpTo(newValue: string, f) {
-    if (newValue !== '') {
+  lookUpTo(newValue: string, form) {
+    if (form.controls['target'].valid) {
       this.dashboardResourceService.getAccount(newValue).subscribe(
-        (a: AccountInfo) => {
-          if (a) {
-            this.toLabel = `${a.owner.firstname} ${a.owner.lastname}`;
-            f.form.controls['target'].setErrors(null);
+        (account: AccountInfo) => {
+          if (account) {
+            this.toLabel = `${account.owner.firstname} ${account.owner.lastname}`;
+            form.form.controls['target'].setErrors(null);
           } else {
-            this.toLabel = 'Unknown account';
-            f.form.controls['target'].setErrors({'incorrect': true});
+            form.form.controls['target'].setErrors({'unknown': true});
           }
         }
       );
@@ -41,12 +43,10 @@ export class NewPaymentComponent implements OnInit {
     this.refreshBalance();
   }
 
-  //TODO: error handling
   onSubmit(f) {
-    if (f.form.valid) {
+    if (f.form.valid && this.amount <= this.balance) {
       this.toLabel = this.TO_LABEL;
-      this.target = f.value.target;
-      this.dashboardResourceService.transfer(new TransferInfo(f.value.target, f.value.amount)).subscribe(
+      this.dashboardResourceService.transfer(new TransferInfo(this.target, this.amount)).subscribe(
         (t: Transaction) => {
           console.log(t);
           if (t) {
@@ -56,6 +56,8 @@ export class NewPaymentComponent implements OnInit {
           }
         }
       );
+    } else {
+      f.form.controls['amount'].setErrors({'range': true});
     }
   }
 
@@ -63,6 +65,8 @@ export class NewPaymentComponent implements OnInit {
     this.dashboardResourceService.getAccountInfos().subscribe(
       infos => this.balance = infos.amount
     );
+    this.amount = null;
+    this.target = null;
   }
 
 }
