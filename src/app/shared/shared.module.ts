@@ -6,10 +6,12 @@ import {
 } from '@angular/material';
 import {CommonModule} from '@angular/common';
 import {EqualValidator} from './directives/equal-validator.directive';
+import {ErrorMessageComponent} from "./error-message/error-message.component";
 
 const EXPORTED_DECLARATIONS = [
   // TODO: Add declarations here, if additional components/directives/... should be exported
   EqualValidator,
+  ErrorMessageComponent
 ];
 const INTERNAL_DECLARATIONS = [
   ...EXPORTED_DECLARATIONS,

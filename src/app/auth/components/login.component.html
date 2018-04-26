@@ -1,6 +1,6 @@
 <!-- TODO: Add ng specific directives/validation settings and add styling -->
 <mat-card>
-
+  <wed-error-message *ngIf="hasError" [header]="errorMsg.header" [message]="errorMsg.message"></wed-error-message>
   <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
 
     <mat-form-field class="full-width">

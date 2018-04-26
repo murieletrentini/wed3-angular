@@ -1,6 +1,6 @@
 import {ActivatedRoute, Params} from '@angular/router';
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {NavigationService} from '../../core';
 
@@ -16,7 +16,13 @@ export class LoginComponent implements OnInit {
 
   private backUrl;
   public loginForm: FormGroup;
-  public isProcessing = false;
+  public isProcessing: boolean = false;
+  public hasError: boolean = false;
+  public errorMsg = {
+    header: "Invalid credentials",
+    message: "Please try again."
+  };
+
 
   constructor(fb: FormBuilder, private autSvc: AuthService, private navigationSvc: NavigationService, route: ActivatedRoute) {
     route.params.subscribe((p: Params) => this.backUrl = p['backUrl']);
@@ -43,12 +49,15 @@ export class LoginComponent implements OnInit {
           } else {
             this.navigationSvc.goToDashboard();
           }
+        } else {
+          this.hasError = true;
         }
       });
   }
 
   public doLogin(): void {
     if (this.loginForm.valid) {
+      this.hasError = false;
       this.isProcessing = true;
       this.autSvc.login(new LoginInfo(
         this.loginForm.get('login').value,

@@ -15,7 +15,7 @@ import {PasswordValidator} from '../../dashboard/validator/password-validator';
 export class RegisterComponent implements OnInit {
 
   public registrationForm: FormGroup;
-  public isProcessing = false;
+  public isProcessing: boolean = false;
 
   constructor(fb: FormBuilder, private autSvc: AuthService, private navigationSvc: NavigationService) {
 
