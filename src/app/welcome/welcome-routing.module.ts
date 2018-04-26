@@ -3,11 +3,13 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {LoginComponent, RegisterComponent} from '../auth/components';
 import {WelcomeComponent} from './welcome.component';
+import {AuthGuard} from "../auth/services/auth.guard";
 
 const appRoutes: Routes = [
   {
     path: 'welcome',
     component: WelcomeComponent,
+    canActivate: [AuthGuard],
     // TODO: Add guard and routing (Register/Login) here...
     children: [
       { path: 'register', component: RegisterComponent },
