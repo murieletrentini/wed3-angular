@@ -14,8 +14,9 @@
   }
 }
 
-
-mat-toolbar {
-  height: auto;
-  flex-direction: column;
+@media only screen and (max-width:767px) {
+  mat-toolbar {
+    height: auto;
+    flex-direction: column;
+  }
 }
