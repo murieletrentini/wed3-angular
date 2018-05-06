@@ -9,7 +9,6 @@ export class AccountInfo {
   public static fromDto(data: any): AccountInfo {
     let owner = data.owner;
     let account = new Account(owner.login, owner.firstname, owner.lastname, owner.accountNr);
-    //TODO: why does this not compile? let a = new Account(...owner);
     return new AccountInfo(data.accountNr, data.amount, account);
   }
 

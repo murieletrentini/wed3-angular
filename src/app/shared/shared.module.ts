@@ -14,7 +14,6 @@ import {EqualValidator} from './directives/equal-validator.directive';
 import {ErrorMessageComponent} from './error-message/error-message.component';
 
 const EXPORTED_DECLARATIONS = [
-  // TODO: Add declarations here, if additional components/directives/... should be exported
   EqualValidator,
   ErrorMessageComponent
 ];
@@ -33,8 +32,7 @@ const EXPORTS = [
   MatInputModule,
   FormsModule,
   ReactiveFormsModule,
-  CommonModule,
-  // TODO: Add exports here, if additional modules should be exported
+  CommonModule
 ];
 
 @NgModule({

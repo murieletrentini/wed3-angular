@@ -13,11 +13,9 @@ import {MatButtonModule} from '@angular/material';
 
 const EXPORTED_DECLARATIONS = [
   LoginComponent, LogoutComponent, RegisterComponent
-  // TODO: Add declarations here, if additional components should be exported
 ];
 const INTERNAL_DECLARATIONS = [
   ...EXPORTED_DECLARATIONS
-  // TODO: Add declarations here, if additional components should be registered for the Auth module
 ];
 const EXPORTS = [
   ...EXPORTED_DECLARATIONS
@@ -39,8 +37,6 @@ export class AuthModule {
       ngModule: AuthModule,
       providers: [
         // DI Providers (Services, Tokens, Factories...) to be used globally and instantiate only once
-
-        // TODO: Add services/guards/... here, if additional classes are placed within the Auth module
         AuthGuard,
         AuthService,
         SecurityTokenStore,

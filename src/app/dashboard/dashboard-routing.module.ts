@@ -4,8 +4,8 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {AllTransactionsComponent} from './components/all-transactions/all-transactions.component';
 
 const appRoutes: Routes = [
-  {path: '', component: DashboardComponent}, // TODO: Add initial router outlet dashboard component...
-  {path: 'transactions', component: AllTransactionsComponent}, //TODO: add alltransactions component
+  {path: '', component: DashboardComponent},
+  {path: 'transactions', component: AllTransactionsComponent},
 ];
 
 @NgModule({
